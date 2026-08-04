@@ -1,6 +1,9 @@
 import React from "react";
-import { Composition } from "remotion";
+import { Composition, Folder } from "remotion";
 import { DynamicComp } from "./DynamicComp";
+import { KeepTripMG } from "./compositions/KeepTrip";
+import { KeepTripAdVideo } from "./compositions/KeepTripAd";
+import { KeepTripKinetic } from "./compositions/KeepTripKinetic";
 
 const defaultCode = `import { AbsoluteFill } from "remotion";
 export const MyAnimation = () => <AbsoluteFill style={{ backgroundColor: "#000" }} />;`;
@@ -21,6 +24,32 @@ export const RemotionRoot: React.FC = () => {
           fps: props.fps as number,
         })}
       />
+      <Folder name="KeepTrip">
+        <Composition
+          id="KeepTripMG"
+          component={KeepTripMG}
+          durationInFrames={1440}
+          fps={30}
+          width={1080}
+          height={1920}
+        />
+        <Composition
+          id="KeepTripAd"
+          component={KeepTripAdVideo}
+          durationInFrames={1350}
+          fps={30}
+          width={1080}
+          height={1920}
+        />
+        <Composition
+          id="KeepTripKinetic"
+          component={KeepTripKinetic}
+          durationInFrames={1065}
+          fps={30}
+          width={1080}
+          height={1920}
+        />
+      </Folder>
     </>
   );
 };

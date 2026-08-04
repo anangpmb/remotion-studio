@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:play.google.com)",
+      "Bash(ls \"C:\\\\Users\\\\anang.pambudi\\\\Project\\\\Mobile\\\\Flutter\\\\travtrack\")",
+      "Read(//c/Users/anang.pambudi/Project/Mobile/Flutter/travtrack/**)"
+    ]
+  }
+}
