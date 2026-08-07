@@ -5,6 +5,7 @@ import { KeepTripMG } from "./compositions/KeepTrip";
 import { KeepTripAdVideo } from "./compositions/KeepTripAd";
 import { KeepTripKinetic } from "./compositions/KeepTripKinetic";
 import { SmartTravelSteps } from "./compositions/SmartTravelSteps";
+import { KeepTripSplit } from "./compositions/KeepTripSplit";
 
 const defaultCode = `import { AbsoluteFill } from "remotion";
 export const MyAnimation = () => <AbsoluteFill style={{ backgroundColor: "#000" }} />;`;
@@ -54,6 +55,14 @@ export const RemotionRoot: React.FC = () => {
           id="SmartTravelSteps"
           component={SmartTravelSteps}
           durationInFrames={1170}
+          fps={30}
+          width={1080}
+          height={1920}
+        />
+        <Composition
+          id="KeepTripSplit"
+          component={KeepTripSplit}
+          durationInFrames={1260}
           fps={30}
           width={1080}
           height={1920}
