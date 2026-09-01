@@ -3,6 +3,7 @@ import {
   AbsoluteFill,
   Audio,
   Easing,
+  Img,
   Sequence,
   interpolate,
   spring,
@@ -15,7 +16,7 @@ import { loadFont } from "@remotion/google-fonts/Inter";
 const { fontFamily } = loadFont();
 
 /* ══════════════════════════════════════════════════════════════════════════
-   TravTrack · "Jastip" Feature Launch — 30s · 9:16 (1080×1920) · 30fps
+   KeepTrip · "Jastip" Feature Launch — 30s · 9:16 (1080×1920) · 30fps
    6 shots × 150 frames = 900 frames.  Problem → Solution → Proof → CTA.
    Product UI (shots 3–5) is recreated pixel-faithfully from the app mockup.
    ══════════════════════════════════════════════════════════════════════════ */
@@ -718,12 +719,13 @@ const Caption: React.FC<{
               style={{
                 ...f(46, 800, accent),
                 textShadow: `0 0 24px ${accent}55`,
+                whiteSpace: "pre",
               }}
             >
               {w.t}
             </span>
           ) : (
-            <span key={i} style={{ ...f(42, 600, dark ? C.text : "rgba(255,255,255,0.94)") }}>
+            <span key={i} style={{ ...f(42, 600, dark ? C.text : "rgba(255,255,255,0.94)"), whiteSpace: "pre" }}>
               {w.t}
             </span>
           ),
@@ -1506,21 +1508,19 @@ const Shot6: React.FC = () => {
             width: 190,
             height: 190,
             borderRadius: 46,
-            background: `linear-gradient(150deg, ${C.gold} 0%, #C88B45 100%)`,
+            background: `linear-gradient(150deg, #363535 0%, #010101 100%)`,
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            boxShadow: `0 20px 60px rgba(219,159,92,0.5), inset 0 3px 0 rgba(255,255,255,0.25)`,
-            position: "relative",
+            boxShadow: `0 20px 60px rgba(70, 70, 70, 0.5), inset 0 3px 0 rgba(255,255,255,0.25)`,
           }}
         >
-          <span style={{ fontSize: 96 }}>🎁</span>
-          <div style={{ position: "absolute", top: 16, left: 20, fontSize: 30 }}>✈️</div>
+          <Img
+            src={staticFile("images/Keeptrip.svg")}
+            style={{ width: 130, height: 130, objectFit: "contain" }}
+          />
         </div>
-        <div style={{ display: "flex", alignItems: "baseline", gap: 2 }}>
-          <span style={{ ...f(88, 800, C.white), letterSpacing: -2 }}>Trav</span>
-          <span style={{ ...f(88, 800, C.gold), letterSpacing: -2 }}>Track</span>
-        </div>
+        <span style={{ ...f(96, 800, C.gold), letterSpacing: -2 }}>KeepTrip</span>
       </div>
 
       {/* tagline */}
@@ -1551,7 +1551,7 @@ const Shot6: React.FC = () => {
       {/* CTA */}
       <div style={{ position: "absolute", top: 1470, width: "100%", textAlign: "center", opacity: ctaOp }}>
         <div style={{ display: "inline-block", background: C.gold, borderRadius: 30, padding: "18px 46px", ...f(34, 800, C.ink), boxShadow: `0 12px 40px rgba(219,159,92,0.45)` }}>
-          Download TravTrack today
+          Download KeepTrip today
         </div>
       </div>
 
