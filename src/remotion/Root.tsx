@@ -8,6 +8,7 @@ import { SmartTravelSteps } from "./compositions/SmartTravelSteps";
 import { KeepTripSplit } from "./compositions/KeepTripSplit";
 import { JastipLaunch } from "./compositions/JastipLaunch";
 import { SplitBillLaunch } from "./compositions/SplitBillLaunch";
+import { SplitBillReel } from "./compositions/SplitBillReel";
 
 const defaultCode = `import { AbsoluteFill } from "remotion";
 export const MyAnimation = () => <AbsoluteFill style={{ backgroundColor: "#000" }} />;`;
@@ -65,6 +66,14 @@ export const RemotionRoot: React.FC = () => {
           id="KeepTripSplit"
           component={KeepTripSplit}
           durationInFrames={1260}
+          fps={30}
+          width={1080}
+          height={1920}
+        />
+        <Composition
+          id="SplitBillReel"
+          component={SplitBillReel}
+          durationInFrames={750}
           fps={30}
           width={1080}
           height={1920}

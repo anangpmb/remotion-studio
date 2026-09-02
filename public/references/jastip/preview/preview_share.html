@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KeepTrip — Share</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --accent:       #F59E0B;
+      --accent-dark:  #D97706;
+      --accent-light: #FEF3C7;
+      --bg:           #E8E4DC;
+      --text:         #2D2926;
+      --text2:        #7A7068;
+      --divider:      rgba(0,0,0,0.07);
+      --green:        #059669;
+      --green-bg:     #D1FAE5;
+      --red:          #DC2626;
+      --red-bg:       #FEE2E2;
+      --radius:       20px;
+      --radius-sm:    12px;
+      /* Neumorphism */
+      --neu-raised:  8px 8px 18px rgba(0,0,0,0.16), -8px -8px 18px rgba(255,255,255,0.85);
+      --neu-subtle:  4px 4px 10px rgba(0,0,0,0.11), -4px -4px 10px rgba(255,255,255,0.8);
+      --neu-pressed: inset 4px 4px 10px rgba(0,0,0,0.13), inset -4px -4px 10px rgba(255,255,255,0.8);
+      --neu-inset:   inset 2px 2px 5px rgba(0,0,0,0.10), inset -2px -2px 5px rgba(255,255,255,0.72);
+      /* Easing */
+      --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ── Header ── */
+    .header {
+      background: var(--bg);
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    }
+
+    .logo { width: 28px; height: 28px; display: flex; align-items: center; flex-shrink: 0; }
+
+    .header-title { font-size: 17px; font-weight: 700; color: var(--text); }
+    .header-sub   { font-size: 11px; color: var(--text2); margin-top: 1px; }
+
+    .pulse-dot {
+      width: 10px; height: 10px;
+      background: var(--green);
+      border-radius: 50%;
+      margin-left: auto;
+      flex-shrink: 0;
+      transition: background-color 400ms var(--ease-out);
+      animation: pulseRing 2s ease-in-out infinite;
+    }
+    @keyframes pulseRing {
+      0%   { box-shadow: 0 0 0 0 rgba(5,150,105,0.45); }
+      70%  { box-shadow: 0 0 0 7px rgba(5,150,105,0); }
+      100% { box-shadow: 0 0 0 0 rgba(5,150,105,0); }
+    }
+
+    /* ── Layout ── */
+    .container { max-width: 640px; margin: 0 auto; padding: 24px 16px 88px; }
+
+    /* ── Cards ── */
+    .card {
+      background: var(--bg);
+      border-radius: var(--radius);
+      margin-bottom: 20px;
+      overflow: hidden;
+      box-shadow: var(--neu-raised);
+      animation: cardEnter 360ms var(--ease-out) both;
+      animation-delay: calc(var(--i, 0) * 75ms);
+    }
+    @keyframes cardEnter {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .card { animation: none; }
+      .badge-unpaid { animation: none; }
+      .pulse-dot { animation: none; }
+    }
+
+    .card-header {
+      padding: 16px 20px 14px;
+      border-bottom: 1px solid var(--divider);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .card-icon  { font-size: 18px; }
+    .card-title { font-size: 15px; font-weight: 700; }
+    .card-count {
+      margin-left: auto;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text2);
+      background: var(--bg);
+      padding: 4px 10px;
+      border-radius: 20px;
+      box-shadow: var(--neu-inset);
+    }
+
+    /* ── Row shared hover ── */
+    .settlement-row,
+    .expense-row,
+    .balance-row,
+    .item-row,
+    .receivable-row {
+      transition: background-color 150ms var(--ease-out);
+    }
+    @media (hover: hover) and (pointer: fine) {
+      .settlement-row:hover,
+      .expense-row:hover,
+      .balance-row:hover,
+      .item-row:hover,
+      .receivable-row:hover {
+        background: rgba(245,158,11,0.05);
+      }
+    }
+
+    /* ── Settlement ── */
+    .settlement-row {
+      display: flex;
+      align-items: center;
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--divider);
+      gap: 12px;
+    }
+    .settlement-row:last-child { border-bottom: none; }
+
+    .avatar {
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px;
+      background: var(--bg);
+      flex-shrink: 0;
+      box-shadow: var(--neu-subtle);
+    }
+
+    .settlement-names { flex: 1; }
+    .settlement-from  { font-size: 14px; font-weight: 600; }
+    .settlement-to    { font-size: 12px; color: var(--text2); margin-top: 2px; }
+
+    .settlement-amount {
+      font-size: 15px; font-weight: 700;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+
+    .badge {
+      font-size: 10px; font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      box-shadow: var(--neu-inset);
+    }
+    .badge-paid   { background: var(--bg); color: var(--green); }
+    .badge-unpaid {
+      background: var(--accent-light);
+      color: var(--accent-dark);
+      animation: unpaidGlow 3s ease-in-out infinite;
+    }
+    @keyframes unpaidGlow {
+      0%, 100% { box-shadow: var(--neu-inset); }
+      50%      { box-shadow: var(--neu-inset), 0 0 10px rgba(245,158,11,0.3); }
+    }
+
+    /* ── Expenses ── */
+    .expense-row {
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--divider);
+    }
+    .expense-row:last-child { border-bottom: none; }
+
+    .expense-top {
+      display: flex; align-items: flex-start; justify-content: space-between; gap: 8px;
+    }
+    .expense-title  { font-size: 14px; font-weight: 600; }
+    .expense-amount { font-size: 14px; font-weight: 700; color: var(--text); white-space: nowrap; }
+    .expense-meta   { font-size: 12px; color: var(--text2); margin-top: 5px; line-height: 1.5; }
+
+    /* ── Balances ── */
+    .balance-row {
+      display: flex; align-items: center;
+      padding: 12px 20px;
+      border-bottom: 1px solid var(--divider);
+      gap: 10px;
+    }
+    .balance-row:last-child { border-bottom: none; }
+
+    .balance-name   { flex: 1; font-size: 14px; font-weight: 500; }
+    .balance-amount { font-size: 14px; font-weight: 700; }
+
+    .positive { color: var(--green); }
+    .negative { color: var(--red); }
+    .zero     { color: var(--text2); }
+
+    /* ── Jastip items ── */
+    .item-row {
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--divider);
+      display: flex; align-items: center; gap: 12px;
+    }
+    .item-row:last-child { border-bottom: none; }
+
+    .item-info  { flex: 1; }
+    .item-name  { font-size: 14px; font-weight: 600; }
+    .item-meta  { font-size: 12px; color: var(--text2); margin-top: 3px; }
+    .item-price { font-size: 14px; font-weight: 700; color: var(--text); white-space: nowrap; }
+
+    .status {
+      font-size: 10px; font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 20px;
+      white-space: nowrap;
+      letter-spacing: 0.4px;
+      box-shadow: var(--neu-inset);
+    }
+    .status-requested  { background: var(--accent-light); color: var(--accent-dark); }
+    .status-bought     { background: var(--bg);           color: var(--accent-dark); }
+    .status-handedOver { background: var(--green-bg);     color: var(--green); }
+    .status-settled    { background: var(--bg);           color: var(--text2); }
+
+    /* ── Receivables ── */
+    .receivable-row {
+      display: flex; align-items: center;
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--divider);
+      gap: 12px;
+    }
+    .receivable-row:last-child { border-bottom: none; }
+
+    .receivable-info   { flex: 1; }
+    .receivable-name   { font-size: 14px; font-weight: 600; }
+    .receivable-sub    { font-size: 12px; color: var(--text2); margin-top: 3px; }
+    .receivable-amount { font-size: 16px; font-weight: 800; color: var(--accent); }
+
+    /* ── States ── */
+    .state-box {
+      text-align: center;
+      padding: 60px 20px;
+      animation: cardEnter 400ms var(--ease-out) both;
+    }
+    .state-icon  { font-size: 48px; margin-bottom: 16px; }
+    .state-title { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+    .state-text  { font-size: 14px; color: var(--text2); line-height: 1.6; }
+
+    /* ── Footer ── */
+    .footer {
+      text-align: center;
+      font-size: 12px;
+      color: var(--text2);
+      margin-top: 32px;
+    }
+
+    /* ── Trip hero ── */
+    .trip-hero {
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+      border-radius: var(--radius);
+      padding: 22px 20px;
+      margin-bottom: 20px;
+      color: white;
+      box-shadow: var(--neu-raised);
+    }
+    .trip-name { font-size: 20px; font-weight: 800; }
+    .trip-meta { font-size: 13px; opacity: 0.85; margin-top: 4px; font-weight: 500; }
+  </style>
+</head>
+<body>
+
+<script>
+const CONFIG = {
+  supabaseUrl: '__SUPABASE_URL__',
+  supabaseAnonKey: '__SUPABASE_ANON_KEY__',
+};
+</script>
+
+<div class="header">
+  <img class="logo" src="keeptrip.svg" alt="KeepTrip" />
+  <div>
+    <div class="header-title">KeepTrip</div>
+    <div class="header-sub">View-only · auto-refresh every 10s</div>
+  </div>
+  <div class="pulse-dot" id="dot" title="Auto-refreshing"></div>
+</div>
+
+<div class="container" id="app">
+  <div class="state-box">
+    <div class="state-icon">⏳</div>
+    <div class="state-title">Loading...</div>
+  </div>
+</div>
+
+<script>
+// ── Helpers ──────────────────────────────────────────────────────────────────
+const params  = new URLSearchParams(location.search);
+const shareId = params.get('id');
+
+function fmt(amount, currency) {
+  if (amount == null || isNaN(amount)) return '—';
+  try {
+    return new Intl.NumberFormat('id-ID', {
+      style: 'currency', currency: currency ?? 'IDR',
+      minimumFractionDigits: 0, maximumFractionDigits: 0,
+    }).format(amount);
+  } catch {
+    return `${currency} ${Number(amount).toLocaleString('id-ID')}`;
+  }
+}
+
+function statusLabel(s) {
+  return { requested: 'Not bought', bought: 'Bought',
+           handedOver: 'Handed over', settled: 'Settled' }[s] ?? s;
+}
+function statusClass(s) { return `status status-${s}`; }
+
+function timeAgo(iso) {
+  if (!iso) return '';
+  const diff = Math.floor((Date.now() - new Date(iso)) / 1000);
+  if (diff < 60) return `${diff}s ago`;
+  if (diff < 3600) return `${Math.floor(diff / 60)}m ago`;
+  if (diff < 86400) return `${Math.floor(diff / 3600)}h ago`;
+  return new Date(iso).toLocaleDateString('en-US');
+}
+
+// ── Fetch ─────────────────────────────────────────────────────────────────────
+async function fetchSession() {
+  const url = `${CONFIG.supabaseUrl}/functions/v1/share-session?id=${shareId}`;
+  const res = await fetch(url, {
+    headers: {
+      apikey: CONFIG.supabaseAnonKey,
+      Authorization: `Bearer ${CONFIG.supabaseAnonKey}`,
+      'Content-Type': 'application/json',
+    },
+  });
+  const json = await res.json();
+  if (!json.success) throw new Error(json.error ?? 'Not found');
+  return json.session;
+}
+
+// ── Renderers ─────────────────────────────────────────────────────────────────
+function renderSplitBill(data) {
+  const settlements = data.settlements ?? [];
+  const expenses    = data.expenses ?? [];
+  const balances    = data.net_balances ?? {};
+  const currency    = data.currency ?? 'IDR';
+  const updatedAt   = data.updated_at;
+
+  let cardIdx = 0;
+
+  let html = `
+    <div class="trip-hero">
+      <div class="trip-name">💰 ${esc(data.trip_name ?? '—')}</div>
+      <div class="trip-meta">Split Bill · Updated ${timeAgo(updatedAt)}</div>
+    </div>`;
+
+  if (settlements.length) {
+    const unpaid = settlements.filter(s => !s.resolved);
+    const paid   = settlements.filter(s =>  s.resolved);
+    html += `
+      <div class="card" style="--i:${cardIdx++}">
+        <div class="card-header">
+          <span class="card-icon">🤝</span>
+          <span class="card-title">Settlement</span>
+          <span class="card-count">${settlements.length}</span>
+        </div>`;
+    for (const s of [...unpaid, ...paid]) {
+      html += `
+        <div class="settlement-row">
+          <div class="avatar">👤</div>
+          <div class="settlement-names">
+            <div class="settlement-from">${esc(s.from)} → ${esc(s.to)}</div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:flex-end;gap:5px">
+            <div class="settlement-amount">${fmt(s.amount, s.currency ?? currency)}</div>
+            <span class="${s.resolved ? 'badge badge-paid' : 'badge badge-unpaid'}">${s.resolved ? 'Paid' : 'Unpaid'}</span>
+          </div>
+        </div>`;
+    }
+    html += `</div>`;
+  }
+
+  const balKeys = Object.keys(balances);
+  if (balKeys.length) {
+    html += `
+      <div class="card" style="--i:${cardIdx++}">
+        <div class="card-header">
+          <span class="card-icon">⚖️</span>
+          <span class="card-title">Net Balance</span>
+        </div>`;
+    for (const name of balKeys) {
+      const val  = balances[name];
+      const cls  = val > 0.5 ? 'positive' : val < -0.5 ? 'negative' : 'zero';
+      const sign = val > 0.5 ? '+' : '';
+      html += `
+        <div class="balance-row">
+          <div class="balance-name">${esc(name)}</div>
+          <div class="balance-amount ${cls}">${sign}${fmt(val, currency)}</div>
+        </div>`;
+    }
+    html += `</div>`;
+  }
+
+  if (expenses.length) {
+    html += `
+      <div class="card" style="--i:${cardIdx++}">
+        <div class="card-header">
+          <span class="card-icon">🧾</span>
+          <span class="card-title">Expenses</span>
+          <span class="card-count">${expenses.length}</span>
+        </div>`;
+    for (const e of expenses) {
+      const sharedWith = (e.shared_with ?? []).join(', ');
+      html += `
+        <div class="expense-row">
+          <div class="expense-top">
+            <div class="expense-title">${esc(e.title)}</div>
+            <div class="expense-amount">${fmt(e.amount, e.currency ?? currency)}</div>
+          </div>
+          <div class="expense-meta">
+            Paid by ${esc(e.paid_by)} · Split ${e.split_mode ?? 'equal'} · ${esc(sharedWith)}
+          </div>
+        </div>`;
+    }
+    html += `</div>`;
+  }
+
+  return html;
+}
+
+function renderJastip(data) {
+  const items          = data.items ?? [];
+  const receivables    = data.receivables ?? [];
+  const masterCurrency = data.master_currency ?? 'IDR';
+  const updatedAt      = data.updated_at;
+
+  let cardIdx = 0;
+
+  let html = `
+    <div class="trip-hero">
+      <div class="trip-name">🎁 ${esc(data.trip_name ?? '—')}</div>
+      <div class="trip-meta">Jastip · Updated ${timeAgo(updatedAt)}</div>
+    </div>`;
+
+  if (receivables.length) {
+    const total = receivables.reduce((s, r) => s + (r.owed ?? 0), 0);
+    html += `
+      <div class="card" style="--i:${cardIdx++}">
+        <div class="card-header">
+          <span class="card-icon">💵</span>
+          <span class="card-title">Bill per Person</span>
+          <span class="card-count">${fmt(total, masterCurrency)}</span>
+        </div>`;
+    for (const r of receivables) {
+      html += `
+        <div class="receivable-row">
+          <div class="avatar">${esc(r.requester_avatar ?? '🎁')}</div>
+          <div class="receivable-info">
+            <div class="receivable-name">${esc(r.requester_name)}</div>
+            <div class="receivable-sub">${r.item_count ?? 0} items · ${r.to_buy_count ?? 0} to buy · ${r.settled_count ?? 0} settled</div>
+          </div>
+          <div class="receivable-amount">${fmt(r.owed, r.currency ?? masterCurrency)}</div>
+        </div>`;
+    }
+    html += `</div>`;
+  }
+
+  const grouped = {};
+  for (const it of items) {
+    const key = it.requester_name ?? '?';
+    if (!grouped[key]) grouped[key] = { avatar: it.requester_avatar, items: [] };
+    grouped[key].items.push(it);
+  }
+
+  for (const [name, group] of Object.entries(grouped)) {
+    html += `
+      <div class="card" style="--i:${cardIdx++}">
+        <div class="card-header">
+          <span class="card-icon">${esc(group.avatar ?? '🎁')}</span>
+          <span class="card-title">${esc(name)}</span>
+          <span class="card-count">${group.items.length} items</span>
+        </div>`;
+    for (const it of group.items) {
+      const price    = it.actual_price ?? it.target_price;
+      const priceCur = it.actual_currency ?? it.target_currency ?? masterCurrency;
+      const qty      = it.quantity > 1 ? ` ×${it.quantity}` : '';
+      html += `
+        <div class="item-row">
+          <div class="item-info">
+            <div class="item-name">${esc(it.name)}${qty}</div>
+            <div class="item-meta">${it.note ? esc(it.note) : '&nbsp;'}</div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:flex-end;gap:5px">
+            ${price != null
+              ? `<div class="item-price">${fmt(price * (it.quantity ?? 1) + (it.fee_amount ?? 0), priceCur)}</div>`
+              : '<div class="item-price">—</div>'}
+            <span class="${statusClass(it.status)}">${statusLabel(it.status)}</span>
+          </div>
+        </div>`;
+    }
+    html += `</div>`;
+  }
+
+  return html;
+}
+
+function esc(str) {
+  if (str == null) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+// ── Main loop ─────────────────────────────────────────────────────────────────
+const app = document.getElementById('app');
+const dot = document.getElementById('dot');
+
+function showError(msg) {
+  app.innerHTML = `
+    <div class="state-box">
+      <div class="state-icon">😕</div>
+      <div class="state-title">Link not found</div>
+      <div class="state-text">${esc(msg)}<br><br>Link may have expired (3 days) or the ID is invalid.</div>
+    </div>`;
+}
+
+function showSetup() {
+  app.innerHTML = `
+    <div class="state-box">
+      <div class="state-icon">⚙️</div>
+      <div class="state-title">Configuration required</div>
+      <div class="state-text">
+        Open <code>index.html</code> and fill in <code>CONFIG.supabaseUrl</code>
+        and <code>CONFIG.supabaseAnonKey</code> with values from your Supabase dashboard.
+      </div>
+    </div>`;
+}
+
+let lastUpdatedAt = null;
+
+async function refresh() {
+  dot.style.background = '#F59E0B';
+  try {
+    const session = await fetchSession();
+    const data    = session.data ?? {};
+
+    if (session.updated_at !== lastUpdatedAt) {
+      lastUpdatedAt = session.updated_at;
+      let html = '';
+      if (session.type === 'split_bill') html = renderSplitBill(data);
+      else if (session.type === 'jastip') html = renderJastip(data);
+      else html = `<pre style="padding:20px;overflow:auto">${esc(JSON.stringify(data, null, 2))}</pre>`;
+      html += `<div class="footer">KeepTrip · Updated ${timeAgo(session.updated_at)} · <a href="https://keeptrip.app" style="color:var(--accent)">keeptrip.app</a></div>`;
+      app.innerHTML = html;
+    }
+
+    dot.style.background = '#059669';
+  } catch (err) {
+    dot.style.background = '#DC2626';
+    if (!lastUpdatedAt) showError(err.message);
+  }
+}
+
+// ── Boot ──────────────────────────────────────────────────────────────────────
+if (!shareId) {
+  app.innerHTML = `
+    <div class="state-box">
+      <div class="state-icon">🔗</div>
+      <div class="state-title">No link found</div>
+      <div class="state-text">Open the link shared from the KeepTrip app.</div>
+    </div>`;
+} else {
+  refresh();
+  setInterval(refresh, 10_000);
+}
+</script>
+</body>
+</html>

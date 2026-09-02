@@ -1,0 +1,1307 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Storyboard: Split Bill Drama — KeepTrip Reels</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0D0F11;
+      --surface: #1C1E22;
+      --amber: #DB9F5C;
+      --amber-dim: rgba(219,159,92,0.15);
+      --amber-glow: rgba(219,159,92,0.35);
+      --white: #FFFFFF;
+      --muted: #888888;
+      --red: #E05555;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: 'Nunito', sans-serif;
+      min-height: 100vh;
+      padding: 48px 24px;
+    }
+
+    /* ── HEADER ── */
+    .header {
+      max-width: 1080px;
+      margin: 0 auto 56px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .header-left h1 {
+      font-size: 32px;
+      font-weight: 900;
+      line-height: 1.1;
+    }
+    .header-left h1 span { color: var(--amber); }
+    .header-left p {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    .meta-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+    }
+    .chip {
+      background: var(--surface);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 4px 12px;
+      border-radius: 99px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--amber);
+    }
+
+    /* ── VISUAL THEME CARD ── */
+    .theme-card {
+      max-width: 1080px;
+      margin: 0 auto 56px;
+      background: var(--surface);
+      border: 1px solid rgba(219,159,92,0.2);
+      border-radius: 20px;
+      padding: 28px 32px;
+    }
+    .theme-card h2 {
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 20px;
+    }
+    .theme-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 16px;
+    }
+    .theme-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .theme-item label {
+      font-size: 11px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .theme-item value {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--white);
+    }
+    .color-row {
+      display: flex;
+      gap: 10px;
+      margin-top: 4px;
+    }
+    .swatch {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    /* ── SECTION LABEL ── */
+    .section-label {
+      max-width: 1080px;
+      margin: 0 auto 24px;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--amber);
+    }
+
+    /* ── SHOT GRID ── */
+    .shot-grid {
+      max-width: 1080px;
+      margin: 0 auto 56px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 28px;
+    }
+
+    /* ── SHOT CARD ── */
+    .shot-card {
+      background: var(--surface);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 20px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .shot-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(219,159,92,0.12);
+    }
+
+    /* phone frame preview */
+    .phone-preview {
+      position: relative;
+      aspect-ratio: 9/16;
+      max-height: 260px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border-radius: 20px 20px 0 0;
+    }
+
+    /* ── SHOT SCENES ── */
+
+    /* Shot 1: Hook - kinetic typography */
+    .scene-1 {
+      background: var(--bg);
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      gap: 16px;
+    }
+    .scene-1 .hook-text {
+      font-size: 18px;
+      font-weight: 900;
+      text-align: center;
+      line-height: 1.3;
+      color: var(--white);
+    }
+    .scene-1 .hook-text .highlight { color: var(--amber); }
+    .scene-1 .chat-bubbles {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      width: 100%;
+      margin-top: 8px;
+    }
+    .chat-bubble {
+      background: #1E2A1E;
+      border-radius: 12px 12px 12px 2px;
+      padding: 7px 12px;
+      font-size: 11px;
+      color: #AAD0AA;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      animation: bubblePop 0.4s ease both;
+    }
+    .chat-bubble:nth-child(2) { animation-delay: 0.15s; align-self: flex-end; border-radius: 12px 12px 2px 12px; }
+    .chat-bubble:nth-child(3) { animation-delay: 0.3s; }
+    @keyframes bubblePop {
+      0% { transform: scale(0.6); opacity: 0; }
+      70% { transform: scale(1.05); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .chat-bubble .dot { width: 6px; height: 6px; background: #5FC45F; border-radius: 50%; }
+
+    /* Shot 2: Problem - tangled web */
+    .scene-2 {
+      background: var(--bg);
+      width: 100%;
+      height: 100%;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .avatar-pentagon {
+      position: relative;
+      width: 180px;
+      height: 180px;
+    }
+    .avatar-dot {
+      position: absolute;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--surface);
+      border: 2px solid rgba(224,85,85,0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+    .avatar-dot:nth-child(1) { top: 0; left: 50%; transform: translateX(-50%); }
+    .avatar-dot:nth-child(2) { top: 30%; right: 0; }
+    .avatar-dot:nth-child(3) { bottom: 5%; right: 10%; }
+    .avatar-dot:nth-child(4) { bottom: 5%; left: 10%; }
+    .avatar-dot:nth-child(5) { top: 30%; left: 0; }
+    .tangle-svg {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+    }
+    .amount-float {
+      position: absolute;
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--red);
+      animation: floatAmount 2s ease-in-out infinite alternate;
+    }
+    .amount-float:nth-child(7) { top: 10px; left: 20px; animation-delay: 0s; }
+    .amount-float:nth-child(8) { top: 20px; right: 15px; animation-delay: 0.3s; }
+    .amount-float:nth-child(9) { bottom: 20px; left: 10px; animation-delay: 0.6s; }
+    @keyframes floatAmount {
+      from { transform: translateY(0px); }
+      to { transform: translateY(-6px); }
+    }
+    .total-badge {
+      position: absolute;
+      bottom: 8px;
+      right: 8px;
+      background: rgba(224,85,85,0.15);
+      border: 1px solid rgba(224,85,85,0.4);
+      padding: 3px 8px;
+      border-radius: 8px;
+      font-size: 10px;
+      font-weight: 900;
+      color: var(--red);
+    }
+
+    /* Shot 3: Solution - app mockup */
+    .scene-3 {
+      background: linear-gradient(160deg, #0D0F11 0%, #151719 100%);
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    .app-mockup {
+      width: 130px;
+      background: var(--surface);
+      border-radius: 16px;
+      border: 1px solid rgba(219,159,92,0.25);
+      padding: 12px;
+      box-shadow: 0 0 30px rgba(219,159,92,0.15), inset 0 0 0 1px rgba(255,255,255,0.04);
+    }
+    .app-header {
+      font-size: 9px;
+      font-weight: 900;
+      color: var(--amber);
+      letter-spacing: 0.5px;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+    .participant-row {
+      display: flex;
+      gap: 5px;
+      justify-content: center;
+      margin-bottom: 10px;
+    }
+    .p-avatar {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: rgba(219,159,92,0.15);
+      border: 1.5px solid rgba(219,159,92,0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      animation: avatarPop 0.3s ease both;
+    }
+    .p-avatar:nth-child(2) { animation-delay: 0.1s; }
+    .p-avatar:nth-child(3) { animation-delay: 0.2s; }
+    .p-avatar:nth-child(4) { animation-delay: 0.3s; }
+    @keyframes avatarPop {
+      0% { transform: scale(0); opacity: 0; }
+      70% { transform: scale(1.15); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .expense-item {
+      background: rgba(255,255,255,0.04);
+      border-radius: 6px;
+      padding: 5px 6px;
+      margin-bottom: 4px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      animation: slideRight 0.4s ease both;
+    }
+    .expense-item:nth-child(2) { animation-delay: 0.1s; }
+    .expense-item:nth-child(3) { animation-delay: 0.2s; }
+    @keyframes slideRight {
+      from { transform: translateX(-20px); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+    .expense-name { font-size: 8px; color: var(--muted); }
+    .expense-amt { font-size: 8px; font-weight: 700; color: var(--white); }
+    .settle-btn {
+      background: var(--amber);
+      color: #000;
+      font-size: 8px;
+      font-weight: 900;
+      text-align: center;
+      padding: 5px;
+      border-radius: 6px;
+      margin-top: 8px;
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(219,159,92,0.4); }
+      50% { box-shadow: 0 0 0 6px rgba(219,159,92,0); }
+    }
+
+    /* Shot 4: Payoff - settlement reveal */
+    .scene-4 {
+      background: var(--bg);
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 20px;
+    }
+    .counter-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .num-old {
+      font-size: 32px;
+      font-weight: 900;
+      color: var(--red);
+      opacity: 0.5;
+      text-decoration: line-through;
+    }
+    .arrow-right { font-size: 20px; color: var(--muted); }
+    .num-new {
+      font-size: 48px;
+      font-weight: 900;
+      color: var(--amber);
+      text-shadow: 0 0 20px rgba(219,159,92,0.5);
+    }
+    .settlement-arrows {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      align-items: center;
+      width: 100%;
+    }
+    .settle-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(219,159,92,0.08);
+      border: 1px solid rgba(219,159,92,0.2);
+      border-radius: 10px;
+      padding: 6px 14px;
+      width: 100%;
+    }
+    .settle-row .avt { font-size: 14px; }
+    .settle-row .arrow { color: var(--amber); font-size: 14px; flex: 1; text-align: center; }
+    .settle-row .amt { font-size: 10px; font-weight: 900; color: var(--white); }
+    .caption-text {
+      font-size: 12px;
+      font-weight: 900;
+      color: var(--white);
+      text-align: center;
+    }
+    .caption-text .amber { color: var(--amber); }
+    .checkmark {
+      font-size: 24px;
+      animation: checkPop 0.5s ease 0.5s both;
+    }
+    @keyframes checkPop {
+      from { transform: scale(0) rotate(-20deg); opacity: 0; }
+      to { transform: scale(1) rotate(0deg); opacity: 1; }
+    }
+
+    /* Shot 5: Share Live */
+    .scene-5 {
+      background: var(--bg);
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 14px;
+      gap: 10px;
+      position: relative;
+    }
+    .share-trigger {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(219,159,92,0.12);
+      border: 1px solid rgba(219,159,92,0.35);
+      border-radius: 10px;
+      padding: 8px 14px;
+      font-size: 11px;
+      font-weight: 900;
+      color: var(--amber);
+      animation: sharePop 0.4s cubic-bezier(0.34,1.56,0.64,1) 0.2s both;
+    }
+    @keyframes sharePop {
+      from { transform: scale(0.7); opacity: 0; }
+      to   { transform: scale(1);   opacity: 1; }
+    }
+    .share-arrow {
+      font-size: 18px;
+      color: var(--amber);
+      animation: arrowBounce 0.8s ease-in-out infinite alternate;
+    }
+    @keyframes arrowBounce {
+      from { transform: translateY(0); }
+      to   { transform: translateY(4px); }
+    }
+    /* Mini preview_share card (warm neomorphic — matches preview_share.html) */
+    .share-preview-card {
+      width: 100%;
+      background: #E8E4DC;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 5px 5px 12px rgba(0,0,0,0.18), -5px -5px 12px rgba(255,255,255,0.85);
+      animation: cardSlideUp 0.5s cubic-bezier(0.23,1,0.32,1) 0.5s both;
+    }
+    @keyframes cardSlideUp {
+      from { transform: translateY(24px); opacity: 0; }
+      to   { transform: translateY(0);    opacity: 1; }
+    }
+    .share-preview-header {
+      background: #E8E4DC;
+      padding: 8px 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border-bottom: 1px solid rgba(0,0,0,0.07);
+    }
+    .share-preview-title {
+      font-size: 9px;
+      font-weight: 700;
+      color: #2D2926;
+      flex: 1;
+    }
+    .live-dot {
+      width: 7px; height: 7px;
+      background: #059669;
+      border-radius: 50%;
+      animation: livePulse 2s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+    @keyframes livePulse {
+      0%   { box-shadow: 0 0 0 0 rgba(5,150,105,0.5); }
+      70%  { box-shadow: 0 0 0 5px rgba(5,150,105,0); }
+      100% { box-shadow: 0 0 0 0 rgba(5,150,105,0); }
+    }
+    .share-settlement-row {
+      padding: 8px 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+    .share-avatar {
+      width: 24px; height: 24px;
+      border-radius: 50%;
+      background: #E8E4DC;
+      box-shadow: 3px 3px 6px rgba(0,0,0,0.13), -3px -3px 6px rgba(255,255,255,0.8);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px;
+      flex-shrink: 0;
+    }
+    .share-names {
+      flex: 1;
+    }
+    .share-from {
+      font-size: 8px;
+      font-weight: 700;
+      color: #2D2926;
+    }
+    .share-amount-col {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 3px;
+    }
+    .share-amount {
+      font-size: 9px;
+      font-weight: 800;
+      color: #F59E0B;
+    }
+    .badge-unpaid-mini {
+      font-size: 7px;
+      font-weight: 700;
+      background: #FEF3C7;
+      color: #D97706;
+      padding: 1px 5px;
+      border-radius: 10px;
+    }
+    .badge-paid-mini {
+      font-size: 7px;
+      font-weight: 700;
+      color: #059669;
+      background: #E8E4DC;
+      padding: 1px 5px;
+      border-radius: 10px;
+      box-shadow: inset 2px 2px 4px rgba(0,0,0,0.1), inset -2px -2px 4px rgba(255,255,255,0.7);
+    }
+    .share-label {
+      font-size: 10px;
+      color: var(--muted);
+      text-align: center;
+      font-style: italic;
+    }
+
+    /* Shot 6: CTA */
+    .scene-6 {
+      background: var(--bg);
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      padding: 24px;
+    }
+    .cta-line {
+      font-size: 28px;
+      font-weight: 900;
+      line-height: 1.1;
+      text-align: center;
+      animation: ctaBounce 0.4s cubic-bezier(0.34,1.56,0.64,1) both;
+    }
+    .cta-line:nth-child(2) { animation-delay: 0.15s; }
+    .cta-line:nth-child(3) { animation-delay: 0.3s; color: var(--amber); }
+    .cta-line.amber-underline {
+      position: relative;
+    }
+    .cta-line.amber-underline::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0; right: 0;
+      height: 3px;
+      background: var(--amber);
+      border-radius: 2px;
+      animation: underlineDraw 0.5s ease 0.7s both;
+      transform-origin: left;
+    }
+    @keyframes ctaBounce {
+      0% { transform: translateY(20px) scale(0.8); opacity: 0; }
+      100% { transform: translateY(0) scale(1); opacity: 1; }
+    }
+    @keyframes underlineDraw {
+      from { transform: scaleX(0); }
+      to { transform: scaleX(1); }
+    }
+    .cta-send {
+      margin-top: 16px;
+      font-size: 11px;
+      font-style: italic;
+      color: var(--muted);
+      text-align: center;
+      animation: ctaBounce 0.4s ease 0.6s both;
+    }
+
+    /* ── SHOT CARD INFO ── */
+    .shot-info {
+      padding: 20px 20px 22px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .shot-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .shot-num {
+      background: var(--amber);
+      color: #000;
+      font-size: 11px;
+      font-weight: 900;
+      padding: 2px 8px;
+      border-radius: 6px;
+    }
+    .shot-time {
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .shot-purpose {
+      font-size: 13px;
+      font-weight: 900;
+      color: var(--white);
+      letter-spacing: 0.5px;
+    }
+    .shot-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .shot-audio {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+    }
+    .audio-icon {
+      font-size: 13px;
+      margin-top: 1px;
+    }
+    .shot-audio span {
+      font-size: 12px;
+      color: #6B8DAA;
+      line-height: 1.5;
+      font-style: italic;
+    }
+    .shot-overlay {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .shot-overlay-label {
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--amber);
+    }
+    .shot-overlay-text {
+      background: rgba(219,159,92,0.06);
+      border-left: 2px solid rgba(219,159,92,0.5);
+      padding: 8px 12px;
+      border-radius: 0 8px 8px 0;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.7;
+      white-space: pre-line;
+    }
+    .shot-caption-box {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .shot-caption-label {
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #7DD87D;
+    }
+    .shot-caption-text {
+      background: rgba(90,180,90,0.06);
+      border-left: 2px solid rgba(90,180,90,0.4);
+      padding: 8px 12px;
+      border-radius: 0 8px 8px 0;
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.7;
+      white-space: pre-line;
+    }
+
+    /* ── TIMELINE BAR ── */
+    .timeline {
+      max-width: 1080px;
+      margin: 0 auto 56px;
+    }
+    .timeline-bar {
+      display: flex;
+      height: 48px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .tl-shot {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 900;
+      position: relative;
+    }
+    .tl-shot:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 10%;
+      height: 80%;
+      width: 1px;
+      background: rgba(255,255,255,0.1);
+    }
+    .tl-1 { background: rgba(219,159,92,0.25); flex: 4; color: var(--amber); }
+    .tl-2 { background: rgba(224,85,85,0.15); flex: 4; color: var(--red); }
+    .tl-3 { background: rgba(90,180,90,0.12); flex: 5; color: #7DD87D; }
+    .tl-4 { background: rgba(219,159,92,0.18); flex: 5; color: var(--amber); }
+    .tl-5 { background: rgba(90,180,220,0.14); flex: 5; color: #7BB8D4; }
+    .tl-6 { background: rgba(255,255,255,0.06); flex: 2; color: var(--white); }
+    .tl-label {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 8px;
+    }
+    .tl-label span {
+      font-size: 10px;
+      color: var(--muted);
+    }
+
+    /* ── POST-PROD ── */
+    .postprod {
+      max-width: 1080px;
+      margin: 0 auto 56px;
+      background: var(--surface);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 20px;
+      padding: 28px 32px;
+    }
+    .postprod h2 {
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 20px;
+    }
+    .checklist {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      list-style: none;
+    }
+    .checklist li {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .checklist li::before {
+      content: '○';
+      color: var(--amber);
+      font-size: 14px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* ── WHY IT WORKS ── */
+    .why-grid {
+      max-width: 1080px;
+      margin: 0 auto 56px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px;
+    }
+    .why-card {
+      background: var(--surface);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px;
+      padding: 20px;
+    }
+    .why-card h3 {
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      color: var(--amber);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+    .why-card p {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      max-width: 1080px;
+      margin: 0 auto;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    footer p { font-size: 12px; color: var(--muted); }
+    .keeptrip-badge {
+      background: var(--amber-dim);
+      border: 1px solid rgba(219,159,92,0.3);
+      color: var(--amber);
+      font-size: 12px;
+      font-weight: 900;
+      padding: 6px 14px;
+      border-radius: 99px;
+    }
+
+    @media (max-width: 600px) {
+      .shot-grid { grid-template-columns: 1fr; }
+      .checklist { grid-template-columns: 1fr; }
+      .theme-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-left">
+      <h1>Split Bill Drama<br/><span>Motion Graphic Storyboard</span></h1>
+      <p>KeepTrip · Instagram Reels · Akuisisi User Baru</p>
+      <div class="meta-chips">
+        <div class="chip">25 detik</div>
+        <div class="chip">6 shots</div>
+        <div class="chip">9:16 · 1080×1920</div>
+        <div class="chip">Motion Graphic</div>
+        <div class="chip">Trial Reels First</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VISUAL THEME -->
+  <div class="theme-card">
+    <h2>Visual Theme</h2>
+    <div class="theme-grid">
+      <div class="theme-item">
+        <label>Palet Warna</label>
+        <div class="color-row">
+          <div class="swatch" style="background:#0D0F11;" title="#0D0F11"></div>
+          <div class="swatch" style="background:#1C1E22;" title="#1C1E22"></div>
+          <div class="swatch" style="background:#DB9F5C;" title="#DB9F5C"></div>
+          <div class="swatch" style="background:#E05555;" title="#E05555"></div>
+          <div class="swatch" style="background:#FFFFFF;" title="#FFFFFF"></div>
+        </div>
+      </div>
+      <div class="theme-item">
+        <label>Font</label>
+        <value>Nunito 700–900</value>
+      </div>
+      <div class="theme-item">
+        <label>Gaya</label>
+        <value>Dark Neomorphic Motion Graphic</value>
+      </div>
+      <div class="theme-item">
+        <label>Motion</label>
+        <value>Ease-out cubic · Spring bounce</value>
+      </div>
+      <div class="theme-item">
+        <label>Film Look</label>
+        <value>Clean digital · No grain</value>
+      </div>
+      <div class="theme-item">
+        <label>BGM</label>
+        <value>Lo-fi electronic · ~120 BPM</value>
+      </div>
+    </div>
+  </div>
+
+  <!-- TIMELINE -->
+  <p class="section-label">Timeline</p>
+  <div class="timeline">
+    <div class="timeline-bar">
+      <div class="tl-shot tl-1">HOOK</div>
+      <div class="tl-shot tl-2">PROBLEM</div>
+      <div class="tl-shot tl-3">SOLUSI</div>
+      <div class="tl-shot tl-4">PAYOFF</div>
+      <div class="tl-shot tl-5">SHARE LIVE</div>
+      <div class="tl-shot tl-6">CTA</div>
+    </div>
+    <div class="tl-label">
+      <span>0s</span><span>4s</span><span>8s</span><span>13s</span><span>18s</span><span>23s</span><span>25s</span>
+    </div>
+  </div>
+
+  <!-- SHOTS -->
+  <p class="section-label">Shot List</p>
+  <div class="shot-grid">
+
+    <!-- SHOT 1 -->
+    <div class="shot-card">
+      <div class="phone-preview">
+        <div class="scene-1">
+          <div class="hook-text">Masih ngitung patungan pake <span class="highlight">kalkulator di WA?</span></div>
+          <div class="chat-bubbles">
+            <div class="chat-bubble"><div class="dot"></div>berapa bagianku?? 🤔</div>
+            <div class="chat-bubble"><div class="dot"></div>udah bayar belum? 😤</div>
+            <div class="chat-bubble"><div class="dot"></div>gue minta transferan ya 💸</div>
+          </div>
+        </div>
+      </div>
+      <div class="shot-info">
+        <div class="shot-meta">
+          <div class="shot-num">Shot 1</div>
+          <div class="shot-time">0 – 4 detik</div>
+        </div>
+        <div class="shot-purpose">HOOK — Stop the Scroll</div>
+        <div class="shot-desc">Background gelap penuh, lalu kata-kata muncul satu per satu dengan snap animation: "Masih ngitung patungan pake kalkulator di WA?" — setiap kata keluar dengan ease-out yang tajam supaya mata pengamat dipaksa mengikuti. Setelah kalimat lengkap, tiga chat bubble hijau WA-style pop-in dari sudut berbeda secara bersamaan, masing-masing membawa teks chaos yang relatable. Adegan ini dirancang agar bekerja penuh tanpa suara — penonton di mute bisa langsung memahami pain-point hanya dari teks dan visual bubble.</div>
+        <div class="shot-overlay">
+          <div class="shot-overlay-label">Teks di Layar</div>
+          <div class="shot-overlay-text">Masih ngitung patungan
+pake kalkulator di WA? 🤯
+
+[bubble 1] "berapa bagianku?? 🤔"
+[bubble 2] "udah bayar belum? 😤"
+[bubble 3] "gue minta transferan ya 💸"</div>
+        </div>
+        <div class="shot-audio">
+          <span class="audio-icon">🔊</span>
+          <span>WA ding ×3 cepat → efek chaos brief (2 nada disonan) → cut ke hening total</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SHOT 2 -->
+    <div class="shot-card">
+      <div class="phone-preview">
+        <div class="scene-2">
+          <div class="avatar-pentagon">
+            <svg class="tangle-svg" viewBox="0 0 180 180">
+              <line x1="90" y1="19" x2="162" y2="66" stroke="#E05555" stroke-width="1.5" opacity="0.6"/>
+              <line x1="90" y1="19" x2="152" y2="126" stroke="#E05555" stroke-width="1.5" opacity="0.5"/>
+              <line x1="90" y1="19" x2="28" y2="126" stroke="#E05555" stroke-width="1.5" opacity="0.7"/>
+              <line x1="162" y1="66" x2="28" y2="66" stroke="#E05555" stroke-width="1.5" opacity="0.4"/>
+              <line x1="162" y1="66" x2="28" y2="126" stroke="#E05555" stroke-width="1.5" opacity="0.6"/>
+              <line x1="152" y1="126" x2="28" y2="66" stroke="#E05555" stroke-width="1.5" opacity="0.5"/>
+              <line x1="90" y1="19" x2="90" y2="160" stroke="#E05555" stroke-width="1" opacity="0.3" stroke-dasharray="4,3"/>
+            </svg>
+            <div class="avatar-dot">😎</div>
+            <div class="avatar-dot">🤦‍♀️</div>
+            <div class="avatar-dot">😤</div>
+            <div class="avatar-dot">🫤</div>
+            <div class="avatar-dot">😵</div>
+            <div class="amount-float" style="top:8px;left:14px;">Rp 45rb</div>
+            <div class="amount-float" style="top:16px;right:10px;">Rp 67rb</div>
+            <div class="amount-float" style="bottom:14px;left:8px;">Rp 23rb</div>
+          </div>
+          <div class="total-badge">12 transaksi 😵</div>
+        </div>
+      </div>
+      <div class="shot-info">
+        <div class="shot-meta">
+          <div class="shot-num">Shot 2</div>
+          <div class="shot-time">4 – 8 detik</div>
+        </div>
+        <div class="shot-purpose">PROBLEM — Visualisasi Chaos</div>
+        <div class="shot-desc">Lima avatar emoji tersebar membentuk pentagon di atas latar gelap, masing-masing mewakili satu orang dalam trip. Garis-garis merah menyala saling silang antar semua avatar — secara visual langsung terbaca sebagai "hutang yang rumit" tanpa perlu penjelasan verbal. Tiga angka rupiah melayang secara acak di sekitar diagram dengan animasi float naik-turun, membuat frame terasa penuh sesak dan tidak terkontrol. Badge counter di sudut kanan bawah menampilkan "12 transaksi 😵" — angka ini adalah setup untuk payoff di Shot 4. Kamera zoom-out pelan dari tengah ke full frame memberi kesan semakin kompleksnya masalah.</div>
+        <div class="shot-overlay">
+          <div class="shot-overlay-label">Teks di Layar</div>
+          <div class="shot-overlay-text">Rp 45.000 · Rp 67.500 · Rp 23.750
+[melayang acak di sekitar avatar]
+
+12 transaksi dibutuhkan 😵
+[badge pojok kanan bawah]</div>
+        </div>
+        <div class="shot-audio">
+          <span class="audio-icon">🔊</span>
+          <span>Musik tension loop berat (bass menekan) · suara kalkulator tap cepat ding-ding-ding · makin rapat menjelang akhir shot</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SHOT 3 -->
+    <div class="shot-card">
+      <div class="phone-preview">
+        <div class="scene-3">
+          <div class="app-mockup">
+            <div class="app-header">⚡ KEEPTRIP SPLIT</div>
+            <div class="participant-row">
+              <div class="p-avatar">🎯</div>
+              <div class="p-avatar">😎</div>
+              <div class="p-avatar">🧳</div>
+              <div class="p-avatar">🌴</div>
+            </div>
+            <div class="expense-item"><span class="expense-name">🍜 Makan</span><span class="expense-amt">180rb</span></div>
+            <div class="expense-item"><span class="expense-name">⛽ Bensin</span><span class="expense-amt">90rb</span></div>
+            <div class="expense-item"><span class="expense-name">🎡 Tiket</span><span class="expense-amt">240rb</span></div>
+            <div class="settle-btn">Selesaikan →</div>
+          </div>
+        </div>
+      </div>
+      <div class="shot-info">
+        <div class="shot-meta">
+          <div class="shot-num">Shot 3</div>
+          <div class="shot-time">8 – 13 detik</div>
+        </div>
+        <div class="shot-purpose">SOLUSI — App Reveal</div>
+        <div class="shot-desc">Phone mockup KeepTrip slide-up dari bawah layar dengan ease-out cubic yang terasa "bersih" — kontras langsung dengan chaos Shot 2. Begitu phone berhenti di tengah, empat avatar peserta pop-in satu per satu dengan spring-bounce yang satisfying: setiap pop disertai suara kecil. Tiga expense row kemudian muncul dari kiri satu per satu (makan, bensin, tiket) — menunjukkan betapa mudahnya memasukkan data. Tombol amber "Selesaikan →" berpulse di bagian bawah, mengundang penonton untuk penasaran apa yang terjadi saat di-tap.</div>
+        <div class="shot-overlay">
+          <div class="shot-overlay-label">Teks di Layar</div>
+          <div class="shot-overlay-text">⚡ KEEPTRIP SPLIT BILL
+
+[peserta] 🎯 😎 🧳 🌴
+[expense] 🍜 Makan · Rp 180.000
+[expense] ⛽ Bensin · Rp 90.000
+[expense] 🎡 Tiket · Rp 240.000
+
+[tombol] Selesaikan →</div>
+        </div>
+        <div class="shot-audio">
+          <span class="audio-icon">🔊</span>
+          <span>Musik berganti ke mayor chord yang resolved · pop ringan ×4 tiap avatar masuk · slide swoosh ringan saat expense row muncul</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SHOT 4 -->
+    <div class="shot-card">
+      <div class="phone-preview">
+        <div class="scene-4">
+          <div class="counter-row">
+            <div class="num-old">12</div>
+            <div class="arrow-right">→</div>
+            <div class="num-new">2</div>
+          </div>
+          <div class="caption-text"><span class="amber">Cuma 2 transaksi.</span><br/>Bukan 12. ✓</div>
+          <div class="settlement-arrows">
+            <div class="settle-row">
+              <span class="avt">🤦‍♀️</span>
+              <span class="arrow">──Rp 85rb──→</span>
+              <span class="avt">😎</span>
+            </div>
+            <div class="settle-row">
+              <span class="avt">🌴</span>
+              <span class="arrow">──Rp 42rb──→</span>
+              <span class="avt">🎯</span>
+            </div>
+          </div>
+          <div class="checkmark">✅</div>
+        </div>
+      </div>
+      <div class="shot-info">
+        <div class="shot-meta">
+          <div class="shot-num">Shot 4</div>
+          <div class="shot-time">13 – 18 detik</div>
+        </div>
+        <div class="shot-purpose">PAYOFF — Reveal yang Memuaskan</div>
+        <div class="shot-desc">Tap animasi pada tombol "Selesaikan" → layar melakukan wipe dari kiri ke kanan, menyapu kekacauan Shot 2 dan memunculkan settlement result. Counter animasi besar di tengah: angka "12" muncul terlebih dahulu lalu dicoret dengan garis merah, kemudian angka "2" muncul dengan amber glow — jeda sebentar supaya penonton sempat membaca kontrasnya. Di bawahnya, hanya dua baris panah bersih yang tersisa dari 12 transaksi sebelumnya. Teks "Cuma 2 transaksi." muncul bold amber. Checkmark hijau pop-in di pojok atas sebagai konfirmasi visual bahwa masalah sudah selesai. Spesifisitas angka "12 → 2" adalah kunci — ini bukan klaim abstrak, ini angka konkret yang believable.</div>
+        <div class="shot-overlay">
+          <div class="shot-overlay-label">Teks di Layar</div>
+          <div class="shot-overlay-text">~~12~~ → 2 transaksi
+
+Cuma 2 transaksi. Bukan 12. ✓
+
+🤦‍♀️ ──Rp 85.000──→ 😎
+🌴 ──Rp 42.000──→ 🎯
+
+[pojok] ✅ Selesai</div>
+        </div>
+        <div class="shot-audio">
+          <span class="audio-icon">🔊</span>
+          <span>"Ting!" resolving chime saat wipe selesai · musik naik ke triumphant beat drop ringan · checkmark pop dengan suara kecil "click"</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SHOT 5: Share Live -->
+    <div class="shot-card" style="border-color: rgba(90,180,220,0.2);">
+      <div class="phone-preview">
+        <div class="scene-5">
+          <div class="share-trigger">📤 Bagikan ke teman</div>
+          <div class="share-arrow">↓</div>
+          <div class="share-preview-card">
+            <div class="share-preview-header">
+              <span style="font-size:11px;">🤝</span>
+              <span class="share-preview-title">KeepTrip · Split Bill</span>
+              <div class="live-dot" title="Live"></div>
+            </div>
+            <div class="share-settlement-row">
+              <div class="share-avatar">🤦‍♀️</div>
+              <div class="share-names">
+                <div class="share-from">Sari → Budi</div>
+              </div>
+              <div class="share-amount-col">
+                <div class="share-amount">Rp 85.000</div>
+                <span class="badge-unpaid-mini">Unpaid</span>
+              </div>
+            </div>
+            <div class="share-settlement-row" style="border-bottom:none;">
+              <div class="share-avatar">🌴</div>
+              <div class="share-names">
+                <div class="share-from">Riko → Tami</div>
+              </div>
+              <div class="share-amount-col">
+                <div class="share-amount">Rp 42.000</div>
+                <span class="badge-paid-mini">Paid ✓</span>
+              </div>
+            </div>
+          </div>
+          <div class="share-label">Teman lihat langsung. Tanpa app.</div>
+        </div>
+      </div>
+      <div class="shot-info">
+        <div class="shot-meta">
+          <div class="shot-num" style="background:#5AB4DC;color:#fff;">Shot 5</div>
+          <div class="shot-time">18 – 23 detik</div>
+        </div>
+        <div class="shot-purpose">SHARE LIVE — Wow Factor</div>
+        <div class="shot-desc">Ini adalah momen "twist" dalam narasi Reel. Setelah settlement selesai di Shot 4, penonton mungkin mengira video sudah berakhir — tapi Shot 5 memperlihatkan satu hal lagi: kamu bisa kirim live link ke teman-teman, dan mereka bisa langsung cek status pembayaran di browser mereka tanpa perlu download apapun. Transisi dari dark KeepTrip UI ke warm beige browser page (mengikuti desain preview_share.html) secara visual mengkomunikasikan "berpindah ke dunia teman." Live dot hijau yang berkedip di header menegaskan bahwa data ini real-time — berubah otomatis setiap 10 detik. Badge "Unpaid" berwarna amber dan "Paid ✓" hijau membuat status setiap orang langsung terbaca dalam hitungan detik, menghapus kebingungan dan pertanyaan "gue udah bayar belum?"</div>
+        <div class="shot-overlay">
+          <div class="shot-overlay-label">Teks di Layar</div>
+          <div class="shot-overlay-text">📤 Bagikan ke teman
+↓
+[browser teman — desain preview_share.html]
+
+🤝 KeepTrip · Split Bill  🟢 live
+──────────────────────
+🤦‍♀️ Sari → Budi    Rp 85.000  [Unpaid]
+🌴 Riko → Tami   Rp 42.000  [Paid ✓]
+
+Teman langsung lihat.
+Live. Tanpa app. Tanpa akun.</div>
+        </div>
+        <div class="shot-audio">
+          <span class="audio-icon">🔊</span>
+          <span>Tap share suara ringan → WA sent "whoosh" → musik transisi ke nada hangat (mayor ke atas) → "Ting!" saat settlement card browser muncul · live dot pulse subtle setiap 2 detik</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SHOT 6: CTA -->
+    <div class="shot-card">
+      <div class="phone-preview">
+        <div class="scene-6">
+          <div class="cta-line">0 debat.</div>
+          <div class="cta-line">0 drama.</div>
+          <div class="cta-line amber-underline">0 kalkulator.</div>
+          <div class="cta-send">"Kirim ke teman yang 'lupa' bayar ➔"</div>
+        </div>
+      </div>
+      <div class="shot-info">
+        <div class="shot-meta">
+          <div class="shot-num">Shot 6</div>
+          <div class="shot-time">23 – 25 detik</div>
+        </div>
+        <div class="shot-purpose">CTA — Send Prompt</div>
+        <div class="shot-desc">Layar kembali ke gelap penuh — membersihkan semua visual sebelumnya dan menempatkan perhatian 100% pada teks. Tiga baris muncul satu per satu dengan spring-bounce: "0 debat." → "0 drama." → "0 kalkulator." — setiap baris diberi jeda 0.15 detik agar penonton sempat membacanya. Baris ketiga berwarna amber dan memiliki underline yang terdraw dari kiri ke kanan, memberi emphasis pada kata yang paling penting. Setelah semua tiga baris tampil, CTA send-prompt muncul slide-up dari bawah dengan font lebih kecil dan italic: "Kirim ke teman yang 'lupa' bayar ➔" — ini sengaja menyebut persona spesifik sehingga setiap penonton langsung memikirkan satu nama orang tertentu di kontak mereka, dan reflek ingin forward video ini.</div>
+        <div class="shot-overlay">
+          <div class="shot-overlay-label">Teks di Layar</div>
+          <div class="shot-overlay-text">0 debat.
+0 drama.
+0 kalkulator.  ← [amber + underline]
+
+"Kirim ke teman yang 'lupa' bayar ➔"
+[kecil · italic · slide-up dari bawah]</div>
+        </div>
+        <div class="shot-caption-box">
+          <div class="shot-caption-label">Caption Instagram</div>
+          <div class="shot-caption-text">Ngitung patungan liburan 6 orang itu mimpi buruk — kecuali ada yang handle otomatis.
+
+KeepTrip langsung kasih tau siapa harus bayar siapa, minimal transaksi. Dan teman-teman bisa cek status pembayaran live lewat link, tanpa perlu download app.
+
+Coba gratis, link di bio.
+
+#liburanbareng #splitbill #traveltips #keeptrip</div>
+        </div>
+        <div class="shot-audio">
+          <span class="audio-icon">🔊</span>
+          <span>Musik fade ke satu ambient chord · whoosh ringan per baris teks · hening total saat CTA send-prompt muncul — silence di akhir mendorong penonton membaca ulang</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- INSTAGRAM CAPTION -->
+  <p class="section-label">Caption Instagram</p>
+  <div class="postprod" style="border-color: rgba(90,180,90,0.2);">
+    <h2 style="color:#7DD87D;">Caption Siap Pakai</h2>
+    <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:20px;">
+      <div>
+        <div style="font-size:11px;font-weight:900;letter-spacing:1px;color:var(--muted);text-transform:uppercase;margin-bottom:10px;">Versi Panjang (Rekomendasi)</div>
+        <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px;font-size:13px;color:var(--muted);line-height:1.8;white-space:pre-line;">Ngitung patungan liburan 6 orang itu mimpi buruk — kecuali ada yang handle otomatis.
+
+KeepTrip langsung kasih tau siapa harus bayar siapa, dengan jumlah transaksi paling minimal. Ga ada lagi saling tanya "lo belum bayar berapa?" di grup WA.
+
+Plus: teman-teman bisa cek status pembayaran secara live lewat browser link, tanpa perlu download app apapun. Real-time, auto-refresh, siap dipakai.
+
+Coba gratis → link di bio.
+
+#liburanbareng #splitbill #traveltips #keeptrip</div>
+      </div>
+      <div>
+        <div style="font-size:11px;font-weight:900;letter-spacing:1px;color:var(--muted);text-transform:uppercase;margin-bottom:10px;">Versi Pendek (Story / Alt)</div>
+        <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px;font-size:13px;color:var(--muted);line-height:1.8;white-space:pre-line;">Patungan trip beres dalam 30 detik.
+
+KeepTrip: split bill, minimal transaksi, live link buat teman yang ga punya app.
+
+Link di bio.
+
+#splitbill #liburanbareng #traveltips</div>
+      </div>
+    </div>
+    <div style="margin-top:16px;padding:12px 16px;background:rgba(219,159,92,0.06);border-radius:10px;border:1px solid rgba(219,159,92,0.15);">
+      <div style="font-size:11px;font-weight:900;letter-spacing:1px;color:var(--amber);text-transform:uppercase;margin-bottom:6px;">Tips Caption</div>
+      <div style="font-size:12px;color:var(--muted);line-height:1.7;">Letakkan kata kunci <strong style="color:var(--white);">"split bill"</strong> dan <strong style="color:var(--white);">"liburan bareng"</strong> di baris pertama caption — Instagram mengindeks konten publik untuk pencarian, jadi baris pertama adalah prioritas SEO. Hashtag maksimal 3–5, fokus pada topik bukan volume.</div>
+    </div>
+  </div>
+
+  <!-- POST PRODUCTION -->
+  <p class="section-label">Post-Production Checklist</p>
+  <div class="postprod">
+    <h2>Pasca Produksi</h2>
+    <ul class="checklist">
+      <li>Generate 6 shots di Kling AI / Runway / Pika</li>
+      <li>Stitch di CapCut atau DaVinci Resolve — urutan Shot 1→6</li>
+      <li>Cut S1→S2: hard cut (0.05s) — kesan chaos mendadak</li>
+      <li>Cut S2→S3: slide-up wipe (0.4s ease-out)</li>
+      <li>Cut S3→S4: wipe kiri-ke-kanan (0.3s)</li>
+      <li>Cut S4→S5: morph/dissolve (0.5s) — dark → warm beige transition</li>
+      <li>Cut S5→S6: fade to black brief (0.2s)</li>
+      <li>BGM: tension → resolved → triumphant → warm → ambient · ~120 BPM</li>
+      <li>SFX: WA ding ×3, kalkulator tap, avatar pop ×4, chime ×2, tap share, whoosh ×3</li>
+      <li>Shot 5: rekam screen browser membuka preview_share.html yang live</li>
+      <li>Teks overlay "KeepTrip" kecil di bawah phone mockup Shot 3</li>
+      <li>Tidak ada watermark CapCut atau TikTok</li>
+      <li>Export: 9:16 · 1080×1920 · 30fps · MP4 H.264</li>
+      <li>Upload sebagai <strong>Trial Reels</strong> dulu — baca hasil 24 jam</li>
+    </ul>
+  </div>
+
+  <!-- WHY IT WORKS -->
+  <p class="section-label">Mengapa Ini Bekerja</p>
+  <div class="why-grid">
+    <div class="why-card">
+      <h3>Hook (0–3 detik)</h3>
+      <p>WA grup patungan adalah referensi universal di Indonesia. Penonton mengenali pain sebelum 1 detik berlalu — watch time detik pertama langsung naik.</p>
+    </div>
+    <div class="why-card">
+      <h3>Sound-off Legible</h3>
+      <p>Semua informasi bekerja lewat teks dan visual. Garis merah = chaos, panah amber = solusi — tanpa perlu suara.</p>
+    </div>
+    <div class="why-card">
+      <h3>Spesifisitas Payoff</h3>
+      <p>"12 → 2 transaksi" jauh lebih credible dari "lebih sedikit". Angka konkret membuat klaim terasa nyata dan bisa diverifikasi.</p>
+    </div>
+    <div class="why-card">
+      <h3>Share Live (Shot 5)</h3>
+      <p>Memperlihatkan bahwa teman <em>tidak perlu download app</em> untuk ikut tracking — mereka bisa cek via browser link. Ini menghapus friction terbesar, dan menjadi alasan baru untuk share Reel ini ke grup liburan.</p>
+    </div>
+    <div class="why-card">
+      <h3>Send-Prompt CTA</h3>
+      <p>"Kirim ke teman yang 'lupa' bayar" menyebut persona spesifik — setiap penonton langsung punya nama di kepala. Ini mendorong <strong>sends</strong>, sinyal terkuat cold reach di Reels.</p>
+    </div>
+  </div>
+
+  <footer>
+    <p>KeepTrip · Storyboard: Split Bill Drama · Instagram Reels 20s</p>
+    <div class="keeptrip-badge">KeepTrip v1.2.1</div>
+  </footer>
+
+</body>
+</html>
